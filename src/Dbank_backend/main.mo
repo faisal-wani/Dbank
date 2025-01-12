@@ -1,14 +1,17 @@
 import Debug "mo:base/Debug";
-import Nat "mo:base/Nat";
-import Int "mo:base/Int";
+import Float "mo:base/Float";
+import Time "mo:base/Time";
+
+
 
 actor Dbank{
 
-stable var currentprize=300;   //orthogonal persistence
+stable var currentprize:Float=300;   //orthogonal persistence
    // currentprize:=200;
-
+stable var starttime=Time.now();
+Debug.print(debug_show(starttime));
 //let id=12345;
-public func Topup(amount: Nat)//update funtion
+public func Topup(amount: Float)//update funtion
 {  currentprize+=amount;
    Debug.print(debug_show(currentprize)); 
 };
@@ -19,9 +22,9 @@ public func Topup(amount: Nat)//update funtion
 //run in terminal dfx canister id Dbank,get id 
 //then u can interact with the program functions from browser
 
-public func withdraw(amount2: Nat)//update funtion
+public func withdraw(amount2: Float)//update funtion
 {
-     let tempvalue: Int=currentprize-amount2;
+     let tempvalue: Float=currentprize-amount2;
 
      if(tempvalue>=0)
      {
@@ -34,9 +37,20 @@ public func withdraw(amount2: Nat)//update funtion
 };
 
 //query funtion
-public query func checkbalance():async Nat
+public query func checkbalance():async Float
 {
      return currentprize;
+};
+
+
+
+
+public func compoundinterest()
+{ let currenttime=Time.now();
+  let timeelapsedNS=currenttime-starttime;
+  let timeelapsedS=timeelapsedNS/1000000000;
+  currentprize := currentprize*(1.01** Float.fromInt(timeelapsedS));
+  starttime := currenttime;
 };
  
 
