@@ -4,7 +4,7 @@ import Int "mo:base/Int";
 
 actor Dbank{
 
-var currentprize=300;
+stable var currentprize=300;   //orthogonal persistence
    // currentprize:=200;
 
 //let id=12345;
