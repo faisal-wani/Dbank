@@ -8,7 +8,7 @@ var currentprize=300;
    // currentprize:=200;
 
 //let id=12345;
-public func Topup(amount: Nat)
+public func Topup(amount: Nat)//update funtion
 {  currentprize+=amount;
    Debug.print(debug_show(currentprize)); 
 };
@@ -19,7 +19,7 @@ public func Topup(amount: Nat)
 //run in terminal dfx canister id Dbank,get id 
 //then u can interact with the program functions from browser
 
-public func withdraw(amount2: Nat)
+public func withdraw(amount2: Nat)//update funtion
 {
      let tempvalue: Int=currentprize-amount2;
 
@@ -31,6 +31,12 @@ public func withdraw(amount2: Nat)
      else{
       Debug.print("can not withdraw,insufficient balance");
      }
+};
+
+//query funtion
+public query func checkbalance():async Nat
+{
+     return currentprize;
 };
  
 
