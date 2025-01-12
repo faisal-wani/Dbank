@@ -1,5 +1,6 @@
 import Debug "mo:base/Debug";
 import Nat "mo:base/Nat";
+import Int "mo:base/Int";
 
 actor Dbank{
 
@@ -17,6 +18,20 @@ public func Topup(amount: Nat)
 //then it will ask u for program canister id 
 //run in terminal dfx canister id Dbank,get id 
 //then u can interact with the program functions from browser
+
+public func withdraw(amount2: Nat)
+{
+     let tempvalue: Int=currentprize-amount2;
+
+     if(tempvalue>=0)
+     {
+       currentprize-=amount2;
+       Debug.print(debug_show(currentprize));
+     }
+     else{
+      Debug.print("can not withdraw,insufficient balance");
+     }
+};
  
 
 }
