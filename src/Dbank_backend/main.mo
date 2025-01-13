@@ -6,10 +6,10 @@ import Time "mo:base/Time";
 
 actor Dbank{
 
-stable var currentprize:Float=300;   //orthogonal persistence
-   // currentprize:=200;
+ stable var currentprize:Float=300;   //orthogonal persistence
+    //currentprize:=200;
 stable var starttime=Time.now();
-Debug.print(debug_show(starttime));
+//Debug.print(debug_show(starttime));
 //let id=12345;
 public func Topup(amount: Float)//update funtion
 {  currentprize+=amount;
